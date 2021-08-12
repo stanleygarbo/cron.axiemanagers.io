@@ -16,5 +16,6 @@ func main() {
 	c.AddFunc("@daily", jobs.GetDailyEarned)
 	c.Start()
 
-	fmt.Scanln()
+	c.Stop()
+	fmt.Print("terminated")
 }
