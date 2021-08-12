@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/robfig/cron/v3"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/db"
@@ -16,6 +17,8 @@ func main() {
 	c.AddFunc("@daily", jobs.GetDailyEarned)
 	c.Start()
 
-	c.Stop()
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Wait()
 	fmt.Print("terminated")
 }
