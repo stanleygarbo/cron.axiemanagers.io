@@ -15,7 +15,6 @@ func main() {
 	c := cron.New()
 	c.AddFunc("@every 1h30m", jobs.GetDailySLPPrice)
 	c.AddFunc("@daily", jobs.GetDailyEarned)
-	jobs.GetDailyEarned()
 	c.Start()
 
 	var wg sync.WaitGroup
