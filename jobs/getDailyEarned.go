@@ -15,7 +15,7 @@ import (
 
 func GetDailyEarned() {
 	roninAddresses := []entities.RoninAddresses{}
-	db.DBConn.Select([]string{"ronin", "last_read"}).Where("last_read >= NOW() - INTERVAL '48 DAYS'").Find(&roninAddresses)
+	db.DBConn.Select([]string{"ronin", "last_read"}).Where("last_read >= NOW() - INTERVAL '48 HOURS'").Find(&roninAddresses)
 
 	wg := &sync.WaitGroup{}
 	sem := semaphore.NewWeighted(3)
