@@ -15,12 +15,10 @@ import (
 
 func GetDailyEarned() {
 	roninAddresses := []entities.RoninAddresses{}
-	db.DBConn.Select([]string{"ronin", "last_read"}).Where("last_read >= NOW() - INTERVAL '48 HOURS'").Find(&roninAddresses)
+	db.DBConn.Select([]string{"ronin", "last_read"}).Where("last_read >= NOW() - INTERVAL '48 DAYS'").Find(&roninAddresses)
 
 	wg := &sync.WaitGroup{}
-	sem := semaphore.NewWeighted(100)
-
-	earnings := []entities.Earning{}
+	sem := semaphore.NewWeighted(3)
 
 	for i, address := range roninAddresses{
 		if address.Ronin != ""{
@@ -45,16 +43,11 @@ func GetDailyEarned() {
 						Earned: lunaciaResponse.TotalSLP,
 					}
 
-					earnings = append(earnings, earning)
-
+					db.DBConn.Create(&earning)
 				}
 			}(i, address.Ronin)
 		}
 	}
 
 	wg.Wait()
-
-	if len(earnings) > 0{
-		db.DBConn.Create(&earnings)
-	}
 }
