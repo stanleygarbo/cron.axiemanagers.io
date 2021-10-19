@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/stanleygarbo/08_cron.axiemanagers.io/cache"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/db"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/entities"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/util"
@@ -44,6 +45,7 @@ func GetDailyEarned() {
 					}
 
 					db.DBConn.Create(&earning)
+					cache.RemoveScholarChartFromCache(ronin)
 				}
 			}(i, address.Ronin)
 		}

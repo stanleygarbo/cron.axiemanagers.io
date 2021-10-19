@@ -5,12 +5,16 @@ import (
 	"sync"
 
 	"github.com/robfig/cron/v3"
+	"github.com/stanleygarbo/08_cron.axiemanagers.io/cache"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/db"
 	"github.com/stanleygarbo/08_cron.axiemanagers.io/jobs"
 )
 
 func main() {
 	db.InitDatabase()
+	cache.InitRedis()
+
+	jobs.GetDailyEarned()
 
 	c := cron.New()
 	c.AddFunc("@every 1h30m", jobs.GetDailySLPPrice)
