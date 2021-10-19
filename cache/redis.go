@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gomodule/redigo/redis"
@@ -24,5 +25,8 @@ func InitRedis() {
 
 func RemoveScholarChartFromCache(ronin string) {
 	rd := Pool.Get()
-	rd.Do("DEL", ronin + "_chart")
+	_, err := rd.Do("DEL", ronin + "_chart")
+	if err != nil{
+		fmt.Printf("@RemoveScholarChart Err: %v", err)
+	}
 }
