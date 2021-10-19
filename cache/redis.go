@@ -18,6 +18,8 @@ func InitRedis() {
 			return redis.Dial("tcp", "127.0.0.1:6379")
 		},
 	}
+
+	RemoveScholarChartFromCache("000000000000000000000000")
 }
 
 func RemoveScholarChartFromCache(ronin string) {
