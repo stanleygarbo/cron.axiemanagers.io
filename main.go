@@ -14,8 +14,6 @@ func main() {
 	db.InitDatabase()
 	cache.InitRedis()
 
-	jobs.GetDailyEarned()
-
 	c := cron.New()
 	c.AddFunc("@every 1h30m", jobs.GetDailySLPPrice)
 	c.AddFunc("@daily", jobs.GetDailyEarned)
