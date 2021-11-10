@@ -19,7 +19,7 @@ func GetDailyEarned() {
 	db.DBConn.Select([]string{"ronin"}).Where("last_read >= NOW() - INTERVAL '48 HOURS'").Group("ronin").Find(&roninAddresses)
 
 	wg := &sync.WaitGroup{}
-	sem := semaphore.NewWeighted(5)
+	sem := semaphore.NewWeighted(6)
 
 	for i, address := range roninAddresses{
 		if address.Ronin != ""{
