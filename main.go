@@ -15,9 +15,10 @@ func main() {
 	cache.InitRedis()
 
 	c := cron.New()
-	c.AddFunc("@every 1h30m", jobs.GetDailySLPPrice)
 	c.AddFunc("@daily", jobs.GetDailyEarned)
 	c.Start()
+
+	jobs.GetDailyEarned()
 
 	var wg sync.WaitGroup
 	wg.Add(1)
