@@ -18,8 +18,6 @@ func main() {
 	c.AddFunc("@daily", jobs.GetDailyEarned)
 	c.Start()
 
-	jobs.GetDailyEarned()
-
 	var wg sync.WaitGroup
 	wg.Add(1)
 	wg.Wait()

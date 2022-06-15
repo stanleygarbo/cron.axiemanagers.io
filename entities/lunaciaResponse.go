@@ -3,9 +3,9 @@ package entities
 type LunaciaResponse struct {
 	Success            bool      `json:"success"`
 	RoninAddress       string    `json:"client_id"`
-	LastClaimTimestamp int       `json:"last_claimed_item_at"`
+	LastClaimTimestamp int       `json:"lastClaimedItemAt"`
 	TotalSLP           int       `json:"total"`
-	BlockchainRelated  Signature `json:"blockchain_related"`
+	BlockchainRelated  Signature `json:"blockchainRelated"`
 }
 
 type Signature struct {

@@ -32,7 +32,7 @@ func GetDailyEarned() {
 				// fmt.Printf("@jobs - fetching: %v", address.Ronin)
 				defer wg.Done()
 				defer sem.Release(1)
-				url := fmt.Sprintf("https://game-api.skymavis.com/game-api/clients/%v/items/1", ronin)
+				url := fmt.Sprintf("https://game-api-pre.skymavis.com/v1/players/%v/items/1", ronin)
 				lunaciaResponse := entities.LunaciaResponse{}
 				err := util.GetResponse(url, &lunaciaResponse)
 				if err != nil{
