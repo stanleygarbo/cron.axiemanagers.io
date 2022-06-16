@@ -2,7 +2,7 @@ package entities
 
 type LunaciaResponse struct {
 	Success            bool      `json:"success"`
-	RoninAddress       string    `json:"client_id"`
+	RoninAddress       string    `json:"clientID"`
 	LastClaimTimestamp int       `json:"lastClaimedItemAt"`
 	TotalSLP           int       `json:"total"`
 	BlockchainRelated  Signature `json:"blockchainRelated"`
